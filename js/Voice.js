@@ -7,8 +7,7 @@ const oscPlayer = (audioContext, voiceConfig) => ({
 
     getOscillator(oscNumber)
     {
-        let oscConfig = this.getOscillatorConfig(oscNumber);
-        //let oscConfig = voiceConfig.oscillators[oscNumber];
+        this.getOscillatorConfig(oscNumber);
 
         let vco = audioContext.createOscillator();
         vco.type = oscConfig.waveform;
