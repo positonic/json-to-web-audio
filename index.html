@@ -36,6 +36,7 @@
 
             let voice = Voice(context, voiceConfig)
             let vco = voice.getOscillator(0);
+
             let pipeLength = 8; //Think church organ pipe feet - keep doubling to increate octaves
 
             vco.connect(context.destination);

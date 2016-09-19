@@ -7,8 +7,8 @@ const oscPlayer = (audioContext, voiceConfig) => ({
 
     getOscillator(oscNumber)
     {
-        //let oscConfig = getOscillatorConfig(oscNumber);
-        let oscConfig = voiceConfig.oscillators[oscNumber];
+        let oscConfig = this.getOscillatorConfig(oscNumber);
+        //let oscConfig = voiceConfig.oscillators[oscNumber];
 
         let vco = audioContext.createOscillator();
         vco.type = oscConfig.waveform;
@@ -27,9 +27,9 @@ const oscPlayer = (audioContext, voiceConfig) => ({
 });
 
 const octave = () => ({
-    applyPipeLength: (frequency, pipeLength) => {
-    return frequency / (parseInt(pipeLength, 10) / 8);
-}
+        applyPipeLength: (frequency, pipeLength) => {
+        return frequency / (parseInt(pipeLength, 10) / 8);
+    }
 });
 
 const Voice = (audioContext, voiceConfig)  => {
