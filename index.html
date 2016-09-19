@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JamesPFarrell.com</title>
+    </head>
+    <body>
+        <h1>Sample Web Audio</h1>
+        <p>Here is some sample code that demonstates the audio api using - ES 6 factory functions, without using 'this' and 'new'. </p>
+
+        <p><b>This is not transpiled so you will need a modern browser</b></p>
+
+        <script src="/js/Voice.js"></script>
+        <script>
+            const context = new AudioContext();
+
+            const voiceConfig = {
+                oscillators : [
+                    {
+                        waveform: "sine",
+                        pipeLength: 32,
+                        gain: 100,
+                        filter: 1000,
+                        tuning: 0
+                    },
+                    {
+                        waveform: "sawtooth",
+                        pipeLength: 32,
+                        gain: 100,
+                        filter: 1000,
+                        tuning: 700
+                    }
+                ],
+                gain: 100
+            };
+
+            let voice = Voice(context, voiceConfig)
+            let vco = voice.getOscillator(0);
+            let pipeLength = 8; //Think church organ pipe feet - keep doubling to increate octaves
+
+            vco.connect(context.destination);
+
+            voice.start(vco, 0, 3, voice.applyPipeLength(440, pipeLength));
+
+        </script>
+
+    </body>
+</html>
