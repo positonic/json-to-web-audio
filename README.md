@@ -1,12 +1,19 @@
 # json-to-web-audio
 
-Here is some sample code that demonstates the audio api using - ES 6, factory functions, without using 'this' and 'new'.
+json-to-web-audio allows you to specify oscillators and filters as JSON, and it will automatically create the necessary Web audio api nodes and filters, and link them together, and send the result to your spreakers.
 
-This app allows you to specify oscillators and filters as JSON, and it will automatically create the necessary Web audio api nodes and filters, and link them together, and linki them to your spreakers.
+You can specify any standard web audio filters, and it also includes support for the wonderful link to the wonderful [TunaJS](https://github.com/Theodeus/tuna) filters..
 
-It also includes support for the wonderful link to the wonderful [TunaJS](https://github.com/Theodeus/tuna)filters..
+To install:
 
-For example, you just heard this:
+     npm install json-to-web-audio
+     
+ From here you can run your own server on the /demo folder, or you can run the built in server with:
+ 
+     npm start
+
+
+The demo plays the below:
 
       nodeVoiceConfig = {
         audioNodes : [
