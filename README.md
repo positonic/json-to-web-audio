@@ -8,12 +8,13 @@ To install:
 
      npm install json-to-web-audio
      
- From here you can run your own server on the /demo folder, or you can run the built in server with:
+To see it working run: 
  
      npm start
 
+Then visit http://localhost:8080/webpack-dev-server/
 
-The demo plays the below:
+To use, first specify your json:
 
       nodeVoiceConfig = {
         audioNodes : [
@@ -84,3 +85,11 @@ The demo plays the below:
 
     };
     
+...and then run it like so:
+
+     let voice = Voice(context, voiceConfig);
+     
+     var masterVca = voice.setupOscillators();
+     let filterInput = voice.setUpFilters(voiceConfig.filters, masterVca, context.destination);
+     
+     voice.play();

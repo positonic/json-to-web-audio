@@ -70,7 +70,7 @@ export const Oscillator = (audioContext, voiceConfig) => {
             return vcoGainControl;
         },
 
-        playVoice: () => {
+        play: () => {
 
             oscillators.forEach(osc => {
                 me.start(osc, 0, 3, 440);

@@ -1,7 +1,12 @@
+var debug = process.env.NODE_ENV !== "production";
+console.log("debug is "+debug);
 var webpack = require('webpack');
 module.exports = {
-    entry: [
-      "./js/app.js"
+    entry: debug ? [
+        'webpack/hot/only-dev-server',
+        "./js/app.js"
+    ] : [
+        "./js/Voice.js"
     ],
     output: {
         path: './',

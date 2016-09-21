@@ -1,11 +1,11 @@
 {
   "name": "json-to-web-audio",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generates Audio nodes - oscillators, gain nodes, filters etc from predefined JSON, connects them together and connects to the destination node. Base generator - https://github.com/zhangmengxue/generator-reactpack#readme",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors",
-    "build": "webpack --progress --colors"
+    "build": "NODE_ENV=production webpack --progress --colors"
   },
   "repository": {
     "type": "git",

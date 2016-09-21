@@ -72,4 +72,4 @@ let voice = Voice(context, voiceConfig);
 var masterVca = voice.setupOscillators();
 let filterInput = voice.setUpFilters(voiceConfig.filters, masterVca, context.destination);
 
-voice.playVoice();
+voice.play();
