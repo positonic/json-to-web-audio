@@ -1,6 +1,6 @@
 # json-to-web-audio
 
-json-to-web-audio allows you to specify oscillators and filters as JSON, and it will automatically create the necessary Web audio api nodes and filters, and link them together, and send the result to your spreakers.
+json-to-web-audio allows you to specify oscillators and filters as JSON, and it will automatically create the necessary Web audio api nodes and filters, and link them together, and send the result to your speakers.
 
 You can specify any standard web audio filters, and it also includes support for the wonderful link to the wonderful [TunaJS](https://github.com/Theodeus/tuna) filters..
 
