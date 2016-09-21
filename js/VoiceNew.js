@@ -5,10 +5,10 @@ const Oscillators = (audioContext, voiceConfig) => {
     let oscillators = [];
 
     let masterVca = audioContext.createGain();
-
     masterVca.gain.value = voiceConfig.gain  / 100;
 
     const me = {
+
         getOscillatorConfig(oscNumber)
         {
             return voiceConfig.oscillators[oscNumber];
@@ -36,6 +36,14 @@ const Oscillators = (audioContext, voiceConfig) => {
             if(pipeLength !== 0)
             {
                 vco.pipeLength = pipeLength;
+                /* Object.defineProperty(vco, 'pipeLength', {
+                 get: function(){
+                 return oscillator.pipeLength
+                 },
+                 set: function(value){
+                 oscillator.pipeLength = value
+                 }
+                 })*/
             }
 
             return vco;
@@ -104,87 +112,6 @@ const Oscillators = (audioContext, voiceConfig) => {
     return me
 
 };
-
-const Filters = (audioContext, voiceConfig) => {
-
-    let filters = [];
-
-    const me = {
-        setUpFilters: (filterConfigs, input, output) => {
-
-            var filter;
-            let previousFilter;
-
-            filterConfigs.forEach((filterConfig, key) => {
-
-                if(filterConfig.tunaType !== undefined)
-                {
-                    filter = me.createTunaFilter(filterConfig);
-                }
-                else
-                {
-                    filter = me.createFilter(filterConfig)
-                }
-
-                filters.push(filter);
-
-            });
-
-            input.connect(filters[0]);
-
-            filters.forEach((filter) => {
-
-                if(typeof previousFilter !== "undefined")
-                {
-                    previousFilter.connect(filter);
-                }
-
-                previousFilter = filter;
-            });
-
-            filters[filterConfigs.length - 1].connect(output);
-
-        },
-
-        createFilter: (filterConfig) => {
-            var filter = audioContext.createBiquadFilter();
-
-            filter.type = filterConfig.props.type;
-            filter.frequency.value = filterConfig.props.value;
-
-            return filter;
-        },
-
-        createTunaFilter: (filterConfig) => {
-            var tuna = new Tuna(audioContext);
-
-            return new tuna[filterConfig.tunaType](filterConfig.props);
-
-        }
-    }
-    return me
-};
-
-const Voice = (audioContext, voiceConfig)  => {
-
-    return Object.assign(
-        {},
-        Oscillators(audioContext, voiceConfig),
-
-        Filters(audioContext, voiceConfig)/*,
-        audioNodes(audioContext, voiceConfig)*/
-
-        /*,
-        vca(audioContext, voiceConfig)*/
-    )
-}
-
-const octave = () => ({
-    applyPipeLength: (frequency, pipeLength) => {
-        return frequency / (parseInt(pipeLength, 10) / 8);
-    }
-});
-
 /*
 
  const vca = (audioContext, voiceConfig) => {
@@ -205,48 +132,118 @@ const octave = () => ({
  };
  */
 
-/*const audioNodes = (audioContext, voiceConfig) => {
+const audioNodes = (audioContext, voiceConfig) => {
 
- let masterVca = audioContext.createGain();
- masterVca.gain.value = voiceConfig.gain  / 100;
+    let masterVca = audioContext.createGain();
+    masterVca.gain.value = voiceConfig.gain  / 100;
 
- const me = {
+    const me = {
 
- createNodes(nodeConfigs)
- {
- let nodes = [];
- let oscillators = nodeConfigs.filter(nodeConfig => {
- return nodeConfig.type == 'oscillator';
- });
+        createNodes(nodeConfigs)
+        {
+            let nodes = [];
+            let oscillators = nodeConfigs.filter(nodeConfig => {
+                return nodeConfig.type == 'oscillator';
+            });
 
- oscillators.forEach(() => {
- nodes = createOscillator(nodeConfig);
- });
+            oscillators.forEach(() => {
+                nodes = createOscillator(nodeConfig);
+            });
 
- debugger
+            debugger
 
- /*
- audioNodesConfigs.forEach(nodeConfig => {
- if(nodeConfig.type == 'oscillator')
- {
- nodes.push(me.createOscillator(nodeConfig));
- }
- else if()
+            /*
+             audioNodesConfigs.forEach(nodeConfig => {
+             if(nodeConfig.type == 'oscillator')
+             {
+             nodes.push(me.createOscillator(nodeConfig));
+             }
+             else if()
 
- })
- * /
-//me.connectVcaToOutput(output);
-return masterVca;
-},
+             })
+             */
+            //me.connectVcaToOutput(output);
+            return masterVca;
+        },
 
-connectInputToVca: (node) => {
-    node.connect(masterVca);
-},
-    connectVcaToOutput: (node) => {
-    vca.connect(node);
-}
-}
-return me
+        connectInputToVca: (node) => {
+            node.connect(masterVca);
+        },
+        connectVcaToOutput: (node) => {
+            vca.connect(node);
+        }
+    }
+    return me
 
 };
-*/
+
+const octave = () => ({
+    applyPipeLength: (frequency, pipeLength) => {
+        return frequency / (parseInt(pipeLength, 10) / 8);
+    }
+});
+
+const Filters = (audioContext, voiceConfig) => {
+
+    /*let masterVca = audioContext.createGain();
+     masterVca.gain.value = voiceConfig.gain  / 100;
+     */
+
+    let filters = [];
+
+    const me = {
+        setUpFilters: (filterConfigs, input, output) => {
+            var filter;
+            let lastFilter;
+
+            filterConfigs.forEach((filterConfig, key) => {
+                filter = me.createFilter(filterConfig)
+                filters.push(filter);
+
+                if(typeof lastFilter !== "undefined")
+                {
+                    lastFilter.connect(filter);
+                }
+
+                lastFilter = Object.assign({}, filter);
+            });
+
+            input.connect(filters[0]);
+            filters[filterConfigs.length - 1].connect(output);
+
+        },
+
+        createFilter: (filterConfig) => {
+            var filter = audioContext.createBiquadFilter();
+
+            filter.type = filterConfig.type;
+            filter.frequency.value = filterConfig.value;
+
+            return filter;
+        },
+
+        /*connectFiltersToOutput: (output) => {
+
+         },
+
+         connectFiltersToOutput: (node) => {
+         // vca.connect(node);lowpassFilter.connect(this.context.destination);
+         }*/
+    }
+    return me
+};
+
+const Voice = (audioContext, voiceConfig)  => {
+
+    return Object.assign(
+        {},
+        Oscillators(audioContext, voiceConfig),
+        //octave(),
+        Filters(audioContext, voiceConfig),
+        audioNodes(audioContext, voiceConfig)
+
+        /*,
+         vca(audioContext, voiceConfig)*/
+    )
+}
+

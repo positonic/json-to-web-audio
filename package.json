@@ -1,0 +1,24 @@
+{
+  "name": "audio",
+  "version": "1.0.0",
+  "description": "Generates Audio nodes - oscillators, gain nodes, filters etc from predefined JSON, connects them together and connects to the destination node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamespfarrell/webAudioApi.git"
+  },
+  "keywords": [
+    "web",
+    "audio",
+    "api"
+  ],
+  "author": "James Farrell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamespfarrell/webAudioApi/issues"
+  },
+  "homepage": "https://github.com/jamespfarrell/webAudioApi#readme"
+}
