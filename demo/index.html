@@ -15,65 +15,66 @@
       nodeVoiceConfig = {
         audioNodes : [
             {
-                type: 'oscillator',
-                props: {
-                    type: "sine",
-                    pipeLength: 32,
-                    gain: 100,
-                    filter: 1000,
-                    tuning: 0
-                }
-            },
-            {
-                type: 'oscillator',
-                props: {
-                    type: "sine",
-                    pipeLength: 8,
-                    gain: 100,
-                    filter: 1000,
-                    tuning: 700
-                }
-            },
-            {
-                type: 'filter',
-                props: {
-                    type: "lowpass",
-                    value: 1000
-                }
-            },
-            {
-                type: 'filter',
-                tunaType: 'Chorus',
-                props: {
-                    rate: 1.5,
-                    feedback: 0.2,
-                    delay: 0.0045,
-                    bypass: 0
-                }
-            },
-            {
-                type: 'filter',
-                tunaType: "Delay",
-                props: {
-                    feedback: 0.45
-                    delayTime: 150,
-                    wetLevel: 0.25,
-                    dryLevel: 1,
-                    cutoff: 2000,
-                    bypass: 0
-                }
-            },
-            {
-                type: 'filter',
-                tunaType: "Phaser",
-                props: {
-                    rate: 1.2,
-                    depth: 0.3,
-                    feedback: 0.2,
-                    stereoPhase: 30,
-                    baseModulationFrequency: 700,
-                    bypass: 0
-                }
+                oscillators : [
+                    {
+                        type: "sine",
+                        pipeLength: 32,
+                        gain: 100,
+                        filter: 1000,
+                        tuning: 0
+                    },
+                    {
+                        type: "sine",
+                        pipeLength: 8,
+                        gain: 100,
+                        filter: 1000,
+                        tuning: 700
+                    }
+                ],
+                gain: 100,
+                filters: [
+                    {
+                        type: 'filter',
+                        props: {
+                            type: "lowpass",
+                                value: 1000
+                        }
+                    },
+                    {
+                        type: 'filter',
+                        tunaType: 'Chorus',
+                        props: {
+                            rate: 1.5,
+                                feedback: 0.2,
+                                delay: 0.0045,
+                                bypass: 0
+                        }
+                    },
+                    {
+                        type: 'filter',
+                        tunaType: "Delay",
+                        props: {
+                            feedback: 0.45,    //0 to 1+
+                                delayTime: 150,    //1 to 10000 milliseconds
+                                wetLevel: 0.25,    //0 to 1+
+                                dryLevel: 1,       //0 to 1+
+                                cutoff: 2000,      //cutoff frequency of the built in lowpass-filter. 20 to 22050
+                                bypass: 0
+                        }
+                    },
+                    {
+                        type: 'filter',
+                        tunaType: "Phaser",
+                        props: {
+                            rate: 1.2,                     //0.01 to 8 is a decent range, but higher values are possible
+                                depth: 0.3,                    //0 to 1
+                                feedback: 0.2,                 //0 to 1+
+                                stereoPhase: 30,               //0 to 180
+                                baseModulationFrequency: 700,  //500 to 1500
+                                bypass: 0
+                        }
+                    }
+                ]
             }
         ],
 
