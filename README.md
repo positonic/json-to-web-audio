@@ -4,7 +4,7 @@ Here is some sample code that demonstates the audio api using - ES 6, factory fu
 
 This app allows you to specify oscillators and filters as JSON, and it will automatically create the necessary Web audio api nodes and filters, and link them together, and linki them to your spreakers.
 
-It also includes support for the wonderful TunaJS filters..
+It also includes support for the wonderful link to the wonderful [TunaJS](https://github.com/Theodeus/tuna)filters..
 
 For example, you just heard this:
 
