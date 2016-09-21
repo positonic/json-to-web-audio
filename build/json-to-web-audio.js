@@ -44,102 +44,16 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	module.exports = __webpack_require__(2);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	/*globals window __webpack_hash__ */
-	if(false) {
-		var lastData;
-		var upToDate = function upToDate() {
-			return lastData.indexOf(__webpack_hash__) >= 0;
-		};
-		var check = function check() {
-			module.hot.check(function(err, updatedModules) {
-				if(err) {
-					if(module.hot.status() in {
-							abort: 1,
-							fail: 1
-						}) {
-						console.warn("[HMR] Cannot check for update. Need to do a full reload!");
-						console.warn("[HMR] " + err.stack || err.message);
-					} else {
-						console.warn("[HMR] Update check failed: " + err.stack || err.message);
-					}
-					return;
-				}
-
-				if(!updatedModules) {
-					console.warn("[HMR] Cannot find update. Need to do a full reload!");
-					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
-					return;
-				}
-
-				module.hot.apply({
-					ignoreUnaccepted: true
-				}, function(err, renewedModules) {
-					if(err) {
-						if(module.hot.status() in {
-								abort: 1,
-								fail: 1
-							}) {
-							console.warn("[HMR] Cannot apply update. Need to do a full reload!");
-							console.warn("[HMR] " + err.stack || err.message);
-						} else {
-							console.warn("[HMR] Update failed: " + err.stack || err.message);
-						}
-						return;
-					}
-
-					if(!upToDate()) {
-						check();
-					}
-
-					require("./log-apply-result")(updatedModules, renewedModules);
-
-					if(upToDate()) {
-						console.log("[HMR] App is up to date.");
-					}
-				});
-			});
-		};
-		var addEventListener = window.addEventListener ? function(eventName, listener) {
-			window.addEventListener(eventName, listener, false);
-		} : function(eventName, listener) {
-			window.attachEvent("on" + eventName, listener);
-		};
-		addEventListener("message", function(event) {
-			if(typeof event.data === "string" && event.data.indexOf("webpackHotUpdate") === 0) {
-				lastData = event.data;
-				if(!upToDate() && module.hot.status() === "idle") {
-					console.log("[HMR] Checking for updates on the server...");
-					check();
-				}
-			}
-		});
-		console.log("[HMR] Waiting for update signal from WDS...");
-	} else {
-		throw new Error("[HMR] Hot Module Replacement is disabled.");
-	}
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/home/james/code/json-to-web-audio/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
 	"use strict";
 
-	var _Voice = __webpack_require__(3);
+	var _Voice = __webpack_require__(2);
 
 	var context = new AudioContext();
 
@@ -312,13 +226,9 @@
 	};
 	*/
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/home/james/code/json-to-web-audio/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -326,9 +236,9 @@
 	    value: true
 	});
 
-	var _Oscillator = __webpack_require__(4);
+	var _Oscillator = __webpack_require__(3);
 
-	var _Filter = __webpack_require__(5);
+	var _Filter = __webpack_require__(4);
 
 	var Voice = function Voice(audioContext, voiceConfig) {
 
@@ -336,13 +246,9 @@
 	};
 	exports.Voice = Voice;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Voice.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/home/james/code/json-to-web-audio/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* 3 */
+/***/ function(module, exports) {
 
 	"use strict";
 
@@ -444,13 +350,9 @@
 	};
 	exports.Oscillator = Oscillator;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Oscillator.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/home/james/code/json-to-web-audio/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	"use strict";
 
@@ -462,7 +364,7 @@
 	    return obj && obj.__esModule ? obj : { "default": obj };
 	}
 
-	var _tunajs = __webpack_require__(6);
+	var _tunajs = __webpack_require__(5);
 
 	var _tunajs2 = _interopRequireDefault(_tunajs);
 
@@ -520,10 +422,8 @@
 	};
 	exports.Filter = Filter;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/home/james/code/json-to-web-audio/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Filter.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
